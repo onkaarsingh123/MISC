@@ -1,0 +1,221 @@
+<body ng-app="inputBasicDemo" ng-controller="paymentCtrl"  layout="column">
+    <md-toolbar class="header" layout="row" layout-align="space-between start">
+            <h1 class="logo">UrbanLife</h1>
+            <div class="top-right">
+            	<ul>
+                	<li>
+                    	<div class="profile-photo"></div>
+                        <span class="welcome-user">Welcome John!</span>
+                    </li>
+                    <li>
+                    	<md-select ng-model="business.city" flex="" class="location-sel">
+                                <md-option value="USA">USA</md-option>
+                                <md-option value="UK">UK</md-option>
+                                <md-option value="CA">CA</md-option>
+                        </md-select>	
+                    </li>
+                    <li>
+                    	<span class="bell-icon"></span>
+                    </li>
+                    <li>
+                    	<span class="setting-icon"></span>
+                    </li>
+                </ul>
+            </div>
+    </md-toolbar>
+    
+	<div layout="row" flex>
+        <md-sidenav class="" md-component-id="left" md-is-locked-open="$media('gt-sm')">
+            <div class="dashboard">
+            	<span class="icon"></span>
+            	<h5>Dashboard</h5>
+            </div>
+            <div class="create-deals">
+            	<span class="icon"></span>
+            	<h5>Create Deals</h5>
+            </div>
+            <div class="view-deals">
+            	<span class="icon"></span>
+            	<h5>View Deals</h5>
+            </div>
+            <div class="billings">
+            	<span class="icon"></span>
+            	<h5>Billings</h5>
+            </div>
+        </md-sidenav>
+		<div layout="column" flex class="main-content" ng-controller="addBusinessCtrl">
+            <md-content layout="column">
+                <div class="reg-top"> 
+                    <h2>
+                        <span class="reg-top-title">Add Your First Business</span>
+                    </h2>
+                    <md-button class="md-raised md-primary blue-btn self-button" ng-click='RegisterMerchant()'>Self</md-button>
+                            <md-button class="md-raised md-primary black-btn">Manager</md-button>
+                </div>
+                <div layout="row" flex>
+                    <div layout="column" class="md-padding form-content" flex="60">
+                       <form name="businessForm" novalidate>
+                            <div layout layout-sm="column">
+                                <md-input-container flex='70'>
+                                  <label>Business Name<span class="mandate-field"> * </span></label>
+                                  <input required name="bName" ng-model="business.name" ng-click="business.bName=true" ng-maxlength="40"/ >
+                                 </md-input-container>
+                               <div  class="validation-messages" ng-show="business.bName">  
+		                              <div ng-messages="businessForm.bName.$error">
+								      <div ng-message=" required">
+								        Business name is required
+								      </div>
+								        <div ng-message="maxlength">
+								      Your Business name is too long must be of 40 characters
+								      </div>
+								      </div>
+								</div>
+                            </div> 
+                            <div layout="row" >
+                                <div layout layout-sm="column" flex="40">
+                                    <md-input-container>
+                                      <label>Business Phone<span class="mandate-field"> * </span></label>	
+                                      <input ng-model="business.phone" type="tel" name="phone" ng-maxlength="20" ng-pattern="/^\+?\d+$/" required ng-click="business.phone=true"/>
+                                    </md-input-container>
+                                    <div class="validation-messages" ng-show="business.phone">  
+				                         <div ng-messages="businessForm.phone.$error">
+										      <div  ng-message="required">
+										        Business Number is required
+										      </div>
+										      <div  ng-message="pattern">
+										      Business Number can only have numbers or (+) sign
+										      </div>
+										      <div  ng-message="maxlength">
+										      Your business number is too long
+										      </div>
+										 </div>
+                              		</div>
+                                </div>
+                                <div layout layout-sm="column" flex="40">
+                                    <md-input-container>
+                                      <label>Business Email<span class="mandate-field"> * </span></label>	
+                                      <input ng-model="business.email" type="email" name="email" ng-maxlength="40" required ng-click="business.email=true">
+
+                                    </md-input-container>
+                                    <div class="validation-messages" ng-show="business.email">  
+			                            <div ng-messages="businessForm.email.$error">
+									      <div ng-message="required">
+									        Email is required
+									      </div>
+									      <div  ng-message="email">
+									       Invalid email address.
+									      </div>
+									      <div  ng-message="maxlength">
+									      Your email address is too long
+									      </div>
+									    </div>
+                              		</div>
+                                </div>
+                            </div>
+                            <div layout="row" >
+                                <div layout layout-sm="column" flex="40">
+                                    <md-input-container>
+                                      <label>Street Address<span class="mandate-field"> * </span></label>	
+                                      <input ng-model="business.address" name="address" required ng-click="business.address=true"> 
+                                    </md-input-container>
+                                    <div  class="validation-messages" ng-show="business.address">  
+			                              <div ng-messages="businessForm.address.$error">
+									      <div ng-message=" required">
+									        Street Address is required
+									      </div>
+									      </div>
+									</div>                                  
+                                </div>
+                                <div layout layout-sm="column" flex="40">
+                                    <div flex="" class="select-box" layout="column" layout-align="start start">
+                                        <label class="match-label">City<span class="mandate-field"> * </span></label>
+                                        <md-select required ng-model="business.city" name="city" flex="" ng-click="business.city=true">
+                                                <md-option value="New York">New York</md-option>
+                                                <md-option value="Los Angeles">Los Angeles</md-option>
+                                                <md-option value="Chicago">Chicago</md-option>
+                                                <md-option value="San Francisco">San Francisco</md-option>
+                                        </md-select>
+                                    </div>
+                                     <div class="validation-messages" ng-show="business.city"> 
+										<div ng-messages="businessForm.city.$error">
+											 <div ng-message="required">City is required </div> 
+										</div>
+								 	</div> 
+                                </div>
+                            </div>
+                            <div layout="row" >
+                                <div layout layout-sm="column" flex="40">
+                                    <div flex="" class="select-box" layout="column" layout-align="start start">
+                                        <label class="match-label">Country<span class="mandate-field"> * </span></label>
+                                        <md-select ng-model="business.country" name="country" required ng-click="business.country=true" flex="">
+                                                <md-option value="USA">USA</md-option>
+                                                <md-option value="UK">UK</md-option>
+                                                <md-option value="CA">CA</md-option>
+                                        </md-select>
+                                    </div>
+                                    <div class="validation-messages" ng-show="business.country"> 
+										<div ng-messages="businessForm.country.$error">
+											 <div ng-message="required">Country is required </div> 
+										</div>
+								 	</div> 
+                                </div>
+                                <div layout layout-sm="column" flex="40">
+                                    <div flex="" class="select-box" layout="column" layout-align="start start">
+                                        <label class="match-label">State<span class="mandate-field"> * </span></label>
+                                        <md-select ng-model="business.state" name="state" requried ng-click="business.state=true" flex="">
+                                                <md-option value="New York">New York</md-option>
+                                                <md-option value="California">California</md-option>
+                                                <md-option value="Illinois">Illinois</md-option>
+                                        </md-select>
+                                    </div>
+                                     <div class="validation-messages" ng-show="business.state"> 
+										<div ng-messages="businessForm.state.$error">
+											 <div ng-message="required">State is required </div> 
+										</div>
+								 	</div> 
+                                    
+                                </div>
+                            </div>
+                           	<div layout="column" flex="70" class="trip-advisior">
+                            	<p>Verifying your Business with tripadvisor will help build trust</p>
+                                <div layout="row">
+                                	<span class="tripadvisior-icon"></span>
+                                    <div>
+                                        <span class="">Business tripadvisor ID </span>
+                                        <input ng-model="business.tripadvisor"  name="tripId" required class="custom-input" placeholder="1234567">
+                                        <p><a href="#">Veryfy Business</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div layout="column" flex="70">
+                               <!--   <div>
+                                	<p>Showcase Your Business Photos</p>
+                                    <p><a href="#">Upload Photos</a>
+                                </div>-->
+                                
+       
+<div class="extra-content" layout="row" flex="70">           
+                     <p>Showcase Your Business Photos</p>           
+                    <div class="upload-photo">
+                       <div class="fileUpload btn btn-primary">
+                            <span id="upload" >Upload Photo</span>
+                            <input type="file" id="file" file-model="photo" class="upload"/>
+                       </div>
+                 	</div> 
+                </div>   
+                
+                            </div>  
+                            <div class="reg-btns">
+                                <md-button class="md-raised md-primary blue-btn" ng-click='addBusiness()'>Next</md-button>
+                                <!--  <a href="#sign-up"><md-button class="md-raised md-primary black-btn">Back</md-button></a>-->
+                                <md-button class="md-raised md-primary hollow-btn">Reset</md-button>                  
+                            </div>
+					  </form>
+                    </div>
+				</div>
+		  </md-content>
+      </div>
+</div>
+    <md-toolbar class="footer" layout="column" layout-align="center end">
+            <h6>&copy; 2015 Urban Life</h6>
+    </md-toolbar>

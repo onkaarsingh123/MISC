@@ -1,0 +1,196 @@
+<!-- <!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Untitled Document</title>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:900,500,100,300,700,400' rel='stylesheet' type='text/css'>    
+    <link rel="stylesheet" href="css/angular-material.css">
+    <link rel="stylesheet" href="css/main.css">
+</head> -->
+<div  ng-controller="homeCtrl"  layout="column" class="homePage">
+    <md-toolbar class="header dark-header" layout="row" layout-align="space-between start">
+            <h1 class="logo">UrbanLife</h1>
+            <div class="top-right" layout="row">
+            	<h5>Already a Merchant?</h5>
+                <md-button class="md-raised md-primary blue-btn font-normal"><a href="#/login">Sign in</a></md-button>
+            </div>
+    </md-toolbar>
+    
+	<div layout="row" flex>
+        <div layout="column" flex class="main-content">
+            <md-content>
+            	<div class="bghome">
+                <div class="top-headings" layout="column" layout-align="center center"> 
+                    <h1 class="font-normal">People love using Deals</h1>
+                    <h4>Grow your business effortlessly by providing customized deals to your customers using UrbanLife</h4>
+				</div>
+                <div layout="column" layout-align="center center" class="home-video">
+                	<img src="images/home-video-temp.jpg">
+                </div>
+                <div layout="column" layout-align="center center">
+                	<md-button class="md-raised md-primary orange-btn"><a href="#/signup">SIGN UP TO ADD DEALS</a></md-button>
+				</div>
+                <div layout="column" layout-align="center center" class="home-signup">
+                    <h4>Already a Merchant? <a href="#/login">Sign in</a></h4>
+                </div>
+                <div layout="column" layout-align="center center" class="network-message">
+                    <h1 class="font-thin">Join Our Network</h1>
+                    <h2 class="font-light">We are growing really fast</h2>
+                </div>
+                <div class="home-circles" layout="row">
+                	<div flex layout="column" layout-align="center center">
+                    	<div class="circle merchant-counting"></div>
+                        <div class="md-text" layout="column" layout-align="center center">							
+                        	<h1 class="font-light">85<sup>*</sup></h1>
+                            <h2 class="font-light">Merchants & Conunting</h2>
+                        </div>
+                    </div>
+                    <div flex layout="column" layout-align="center center">
+                    	<div class="circle deals-listed"></div>
+                        <div class="md-text" layout="column" layout-align="center center">							
+                        	<h1 class="font-light">120<sup>*</sup></h1>
+                            <h2 class="font-light">Deals Listed</h2>
+                        </div>
+                    </div>
+                    <div flex layout="column" layout-align="center center">
+                    	<div class="circle happy-customer"></div>
+                        <div class="md-text" layout="column" layout-align="center center">							
+                        	<h1 class="font-light">250<sup>*</sup></h1>
+                            <h2 class="font-light">Happy Customers</h2>
+                        </div>
+                        
+                    </div>
+                </div> 
+                <div class="reached-places" layout="column" layout-align="center center">
+                	<h1 class="font-light">UrbanLife has already reached these places</h1>
+                    <div layout="row" layout-fill>
+                    	<div flex layout="column" layout-align="center center">
+                        	<ul>
+                            	<li>Alamenda</li>
+                                <li>Berkeley</li>
+                                <li>Menlo Park</li>
+                                <li>Millbrae</li>
+                            </ul>
+                    	</div>
+                        <div flex layout="column" layout-align="center center">
+                        	<ul>
+                            	<li>Mountian view</li>
+                                <li>Oakland</li>
+                                <li>PaloAlto</li>
+                                <li>Redwood City</li>
+                            </ul>
+                    	</div>
+                        <div flex layout="column" layout-align="center center">
+                        	<ul>
+                            	<li>San Franciso</li>
+                                <li>San Jose</li>
+                                <li>San Mateo</li>
+                                <li>Santa Clara</li>
+                            </ul>
+                    	</div>
+                    </div>
+            	</div>
+                <div class="subfooter" layout="row">
+                	<div flex layout="column" layout-align="center center">
+                    	<h2>Flexibility</h2>
+                        <p>Use our walk-in Deals to expand</p>
+                        <p>your Business by approching</p>
+						<p>nearby customer</p>
+                    </div>
+                    <div flex layout="column" layout-align="center center">
+                    	<h2>UrbanLife Network</h2>
+                        <p>Rich Network to Grow your bysiness </p>
+                        <p>and reach out large</p>
+						<p>customers</p>
+                    </div>
+                    <div flex layout="column" layout-align="center center">
+                    	<h2>Secure Payment</h2>
+                        <p>Manage multiple outlets with option</p>
+                        <p> to one-platform payment </p>
+						<p>systems</p>
+                    </div>
+                </div>
+                <div class="availableon" layout="column" layout-align="center center">
+                	<h2 class="font-normal">Available on</h2>
+                	<div layout="row">
+                        <div class="appstore"></div>	
+                        <div class="googleplay"></div>	
+                    </div>
+                </div>
+                <div class="homefooter" layout="row">
+                	<div flex="50" layout="row">
+                    	<div flex>
+                        	<h5>Company</h5>
+                            <ul>
+                            	<li><a href="#">- About us</a></li>
+                                <li><a href="#">- Press</a></li>
+                                <li><a href="#">- Blog</a></li>
+                                <li><a href="#">- Terms & Condition</a></li>
+                            </ul>
+                        </div>	
+                        <div flex>
+                        	<h5>Merchants</h5>
+                            <ul>
+                            	<li><a href="#">- Why list your deals</a></li>
+                                <li><a href="#">- How It works</a></li>
+                                <li><a href="#">- Business Transction</a></li>
+                                <li><a href="#">- Managing Multiple Restaurants</a></li>
+							</ul>
+                        </div>	
+                        <div flex>
+                        	<h5>Blog</h5>
+                            <ul>
+                            	<li><a href="#">- Press</a></li>
+                                <li><a href="#">- Media</a></li>
+							</ul>
+                        </div>	
+                        
+                    </div>
+                    <div class="home-copyright" flex layout="column" layout-align="start end">
+                    	&copy; 2015 UrbanLife
+                    </div>
+                     
+                </div>
+                </div>        
+			</md-content>
+      </div>
+</div>
+<!-- Angular Material Dependencies -->
+    <!--script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular-animate.min.js"></script>
+    <script type="text/javascript" src="js/angular-aria.min.js"></script>
+    <script type="text/javascript" src="js/angular-material.min.js"></script>
+    <script type="text/javascript" src="js/angular-messages.min.js"></script-->
+<!--     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.js"></script>
+    <script type="text/javascript" src="js/angular-messages.min.js"></script>
+	<script type="text/javascript">
+	
+	angular
+  .module('inputBasicDemo', ['ngMaterial', 'ngMessages'])
+  .controller('paymentCtrl', function($scope) {
+    $scope.business = {
+		name : 'Alex Taylor',
+		email : 'abd@email.com',
+		phone: 'XXX-XXX-XXXX',
+		pass : '**********',
+		rPass : '**********', 
+		billingAdd:'steet c BLock 5, San Fransisco',
+		securtyCode: 'CVV Number',
+		postCode: 'xxxxxx', 
+		gracePeriod: '15:00 Minutes',
+		expiryTime: '15:00 Minutes'
+	};
+	
+	})
+  .config( function($mdThemingProvider){
+    // Configure a dark theme with primary foreground yellow
+    $mdThemingProvider.theme('docs-dark', 'default')
+        .primaryPalette('yellow')
+        .dark();
+  });
+</script> -->
+</div>
+</html>

@@ -1,0 +1,130 @@
+
+.validation-messages{
+	/*position:absolute;*/
+	bottom: 6px;
+	font-size: 12px;
+	color: red;
+}
+
+.server-response-massages {
+  /* position: absolute; */
+  bottom: 6px;
+  font-size: 14px;
+  color: red;
+}
+
+.login-response-massages {
+  /* position: absolute; */
+  bottom: 6px;
+  font-size: 14px;
+  color: red;
+  margin-top: 15px;
+  margin-left: 15%;
+}
+
+#errorMsg{
+	padding-top:105px;
+}
+#errorEmailMsg{
+	padding-top:52px;
+}
+#errorCCValid{
+	padding-top:105px;
+}
+
+#errorSCMsg{
+	padding-left:250px;
+}
+#errorbemailMsg{
+	padding-left:300px;
+}
+
+//File Upload Changes
+.upload-photo{
+       margin-top: 34px;
+}
+.upload-photo h5{
+       margin-top:0;
+}
+.upload-photo h5 a{
+       color:#36a4d9;
+}
+
+.file-upd-icon{
+       background:url("../images/sprites.png") no-repeat 0 0;
+       padding:26px;
+       display:inline-block;
+       margin-left:16px;
+}
+
+.fileUpload {
+       position: relative;
+       overflow: hidden;
+       margin: 10px;
+}
+.fileUpload input.upload {
+       position: absolute;
+       top: 0;
+       right: 0;
+       margin: 0;
+       padding: 0;
+       font-size: 10px;
+       cursor: pointer;
+       opacity: 0;
+       filter: alpha(opacity=0);
+       text-decoration: underline;
+}
+
+#upload{
+       font-family: RobotoDraft,Roboto,'Helvetica Neue',sans-serif;
+       font-size:12px;
+       text-decoration: underline;
+       color:#36a4d9;
+       font-weight: bolder;
+}
+.upload-messages{
+       margin-left:10px;
+       margin-top:-5px;
+       font-size:12px;
+       color:#FF0000;
+}
+
+.imageInvalideMsg{ color: rgb(244,67,54);
+font-size: 12px;
+  line-height: 24px;
+}
+
+.filename{word-wrap: break-word;
+  width: 147px;
+}
+
+.mastercardback-icon, 
+.amexback-icon{
+	background: url("../images/sprites.png") no-repeat -68px 0;
+	padding: 0 10px;
+	margin-left: 5px;
+}
+
+.mastercardback-icon, .amexback-icon {
+	background-position: -320px 0;
+	padding: 17px 26px;
+	position: absolute;
+	left: 110px;
+	top: 11px;
+}
+
+.mastercardback-icon{
+	background-position: -179px 0;
+} 
+.amexback-icon{
+	background-position: -248px 0;
+}
+
+.reg-btns{
+	margin-top:20px;
+}
+
+.serverSuccessMsg{
+margin-bottom:20px;
+	
+}

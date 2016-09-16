@@ -1,0 +1,88 @@
+<div ng-controller="loginController"  layout="column" class="login-page">
+    <md-toolbar class="header dark-header" layout="row" layout-align="space-between start">
+            <h1 class="logo" layout="column">UrbanLife</h1>
+            <div class="top-right">
+            	
+            	<h5>Don't Have an Account? <a href="#/signup">SignUp</a></h5>
+            	
+            </div>
+    </md-toolbar>
+    
+	<div layout="row" flex>
+        <div layout="column" flex class="main-content">
+            <md-content layout="column">
+                <div class="login-top"> 
+                    <h1>People love using Deals</h1>
+                    <h2>Grow your business effortlessly by providing customized deals to your customers using UrbanLife</h2>
+                    
+                </div>
+                <div layout="column" layout-align="center center" ng-controller="loginController">
+                	   <form name="loginForm" novalidate >
+                	   
+                	   <md-whiteframe class="md-whiteframe-z1" layout="column" layout-align="center center">
+                        <div class="login-head" flex layout-fill></div>
+                        
+                        <md-input-container>
+                            <label>Username</label>
+                            <input type="email" name="username" ng-model="login.username" required ng-blur="user.usernamevar=true" ng-model-options="{updateOn:'blur'}">
+                            
+                            <div class="validation-messages"  ng-messages="loginForm.username.$error" ng-show="user.usernamevar">
+								      <div  ng-message="required">
+								        Username is required
+								      </div>
+								       <div  ng-message="email">
+								        Invalid email address
+								      </div>
+								       
+								      </div>
+								    
+								      
+								      
+                        </md-input-container>
+                        
+                        <md-input-container flex>
+                            <label>Password</label>
+                            <input ng-model="login.password" name="password" type="password" required ng-blur="user.passwordvar=true" ng-model-options="{updateOn:'blur'}">
+                            
+                            <div class="validation-messages"  ng-messages="loginForm.password.$error"  ng-show="user.passwordvar">
+								      <div  ng-message="required">
+								        Password is required
+								      </div>
+								       
+								      </div>
+                            
+                            
+                        </md-input-container>
+                        <div layout="row" layout-align="space-between center" class="login-controls">
+                        	<md-checkbox ng-model="login.remember" aria-label="Checkbox 1">
+                            	Remember me
+                            </md-checkbox>	
+                            <div><a href="#/forgotPassword">Forgot password?</a></div>
+                        </div>
+                        <div layout="row" class="login-controls">
+                        	<md-button class="md-raised md-primary blue-btn" ng-click='doLogin()'>Sign in</md-button>
+
+						 <div class="validation-messages" layout="column" layout-align="center center" style="margin-left:20px">
+						<div class="login-response-massages" ng-switch="login.servererror">
+
+							<div ng-switch-when="30020">Incorrect credentials.</div>
+						</div>
+						</div>
+					</div>
+						
+						
+                    </md-whiteframe>
+                    
+                    </form>
+                    
+				</div>
+		  </md-content>
+      </div>
+</div>
+    <md-toolbar class="footer" layout="column" layout-align="center end">
+            <h6>&copy; 2015 Urban Life</h6>
+    </md-toolbar>
+                
+
+</div>
+

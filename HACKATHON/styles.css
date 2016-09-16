@@ -1,0 +1,29 @@
+.hide{
+	display:none;
+}
+
+.show{
+	display:block;
+}
+
+.container
+{
+		margin:0 auto;
+		max-width:500px;
+		height:auto;
+		background: #e5ffff;
+}
+
+.header{
+	margin:0 auto;
+	max-width:500px;
+	color:gray;
+	background:#ffffe5;
+}
+#mapFrame
+{
+	margin:0 auto;
+	width:500px;
+	height:450px;
+	
+}

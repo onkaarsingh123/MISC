@@ -1,0 +1,154 @@
+<div class="container">
+      <div ng-app="" ng-controller="registrationCtrl" layout="column">
+           <md-toolbar layout="row" class="header" layout-align="space-between start">
+                <h1 class="logo">UrbanLife</h1>
+                <h5>Already a Merchant? <a href="#">signin</a></h5>
+    </md-toolbar>            
+            <div class="reg-top"> 
+                <h2>
+                	<span class="reg-top-title">Basic Information</span>
+					<md-button class="md-primary md-fab md-raised">1</md-button>
+                    <span class="hz-line"></span>
+                	 <md-button class="md-primary md-fab">2</md-button>
+                </h2>
+            </div>
+         <div layout="row" flex>
+                <md-content layout="column" class="md-padding form-content" flex="60">
+                   <form name="userForm" >
+                        <h5>Name</h5>
+                        <div layout layout-sm="column">
+                            <md-input-container flex>
+                              <label>First Name</label>
+                              <input required name="fName" ng-model="user.firstname" >
+                              <div ng-show="userForm.fName.$dirty && userForm.user.$invalid">
+								<div ng-show="userForm.fName.$error.required">first name is required.</div>
+</div>
+                            </md-input-container>
+                            <md-input-container flex>
+                              <label>Middle Name</label>
+                              <input ng-model="user.middleName">
+                            </md-input-container>
+                            <md-input-container flex>
+                              <label>Last Name</label>
+                              <input ng-model="user.lastName">
+                            </md-input-container>
+                          </div>
+                          
+                        <div layout layout-sm="column">
+                            <md-input-container flex>
+                              <label>Email</label>	
+                              <input ng-model="user.email" type="email" name="email" required>
+                              <div class="validation-messages" ng-show="userForm.email.$dirty && userForm.email.$invalid">
+                                <div ng-show="userForm.email.$error.required">Email is required.</div>
+                                <div ng-show="userForm.email.$error.email">Invalid email address.</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                        <div layout layout-sm="column">
+                            <md-input-container flex>
+                              <label>Mobile</label>
+                              <input ng-model="user.telephone">
+                            </md-input-container>
+                        </div>
+                        <div layout layout-sm="column">
+                            <md-input-container flex>
+                              <label>Password</label>
+                              <input ng-model="user.password" type="password">
+                            </md-input-container>
+                        </div>
+                        <div layout layout-sm="column">
+                            <md-input-container flex>
+                              <label>Retype Password</label>
+                              <input ng-model="user.rpassword" type="password">
+                            </md-input-container>
+                        </div>
+                        
+                        
+                         
+                     <input type="file" file-model="photo"/>
+                      
+                      
+                
+     <a href="#next2"><md-button class="md-raised md-primary" ng-click='NextPage()'>Continue</md-button> </a>                 
+                        </form>
+                </md-content>   
+            </div>
+            <md-toolbar class="footer" layout-align="center end">
+            	<h6>&copy; 2015 Urban Life</h6>
+            </md-toolbar> 
+            
+            
+            
+   <!--   <div layout="row" flex>
+    	<div layout="column" flex id="content">
+        	<md-content layout="column" flex class="md-padding">
+            	<h4>SIGN UP IN TWO EASY STEPS</h4>
+                <form name="userForm">
+                	<h6>Name</h6>
+	                <div layout layout-sm="column">
+                    	<md-input-container flex>
+                          <label>First Name</label>
+                          <input ng-model="user.firstname">
+                        </md-input-container>
+                        <md-input-container flex>
+                          <label>Middle Name</label>
+                          <input ng-model="user.middleName">
+                        </md-input-container>
+                        <md-input-container flex>
+                          <label>Last Name</label>
+                          <input ng-model="user.lastName">
+                        </md-input-container>
+                      </div>
+                      
+                    <div layout layout-sm="column">
+                        <md-input-container flex>
+                          <label>Email</label>
+                          <input ng-model="user.email">
+                        </md-input-container>
+                    </div>
+                    <div layout layout-sm="column">
+                        <md-input-container flex>
+                          <label>Mobile</label>
+                          <input ng-model="user.mobile">
+                        </md-input-container>
+                    </div>
+                    <div layout layout-sm="column">
+                        <md-input-container flex>
+                          <label>Password</label>
+                          <input ng-model="user.pass" type="password">
+                        </md-input-container>
+                    </div>
+                    <div layout layout-sm="column">
+                        <md-input-container flex>
+                          <label>Retype Password</label>
+                          <input ng-model="user.rPass" type="password">
+                        </md-input-container>
+                    </div>
+                    
+                    <div layout layout-sm="column">
+                     <input type="file" file-model="photo"/>
+                      </div>
+                   
+                   
+                    <a href="#next"><md-button class="md-raised md-primary" ng-click=''>Next</md-button></a> 
+                    <a href="#next"><md-button class="md-raised md-primary" ng-click='NextPage()'>Submit</md-button></a>                  
+					</form>
+            </md-content>
+        </div>
+    </div>  -->
+    
+    
+</div>
+</div>
+ 
+    
+ <!-- <div ng-controller = "myCtrl">
+    <input type="file" file-model="myFile"/>
+    <button ng-click="uploadFile()">upload me</button>
+</div>  
+<div ng-controller = "imageCtrl">
+ <img ng-src="{{image}}"/>
+ <button ng-click="getImageFile()">get image</button>
+</div>
+ </body>
+</html>  -->

@@ -1,0 +1,305 @@
+<div layout="row" flex>
+        <md-sidenav class="" md-component-id="left" md-is-locked-open="$media('gt-sm')">
+            <div class="dashboard">
+            	<span class="icon"></span>
+            	<h5>Dashboard</h5>
+            </div>
+            <div class="create-deals">
+            	<span class="icon"></span>
+            	<h5>Create Deals</h5>
+            </div>
+            <div class="view-deals">
+            	<span class="icon"></span>
+            	<h5>View Deals</h5>
+            </div>
+            <div class="billings">
+            	<span class="icon"></span>
+            	<h5>Billings</h5>
+            </div>
+        </md-sidenav>
+		<div layout="column" flex class="main-content" ng-controller="addBusinessCtrl" ng-init="checkUsertokenaddbusiness();">
+            <md-content layout="column">
+                <div class="reg-top"> 
+                    <h3>
+                        <span class="reg-top-title">Add Your First Business</span>
+                    </h3>
+                    <md-button class="md-raised md-primary blue-btn self-button" ng-click='business.manager=false'>Self</md-button>
+                            <md-button class="md-raised md-primary black-btn" ng-click="business.manager=true">Manager</md-button>
+                </div>
+                <div layout="row" flex>
+                    <div layout="column" class="md-padding form-content" flex="60">
+                       <form name="businessForm" novalidate>
+                            <div layout="column" layout-wrap class="ccrow">
+                                <md-input-container flex='70'>
+                                  <label>Business Name<span class="mandate-field"> * </span></label>
+                                  <input required name="bname" ng-model="business.name"  ng-maxlength="40" ng-blur="business.bname=true"  ng-model-options="{updateOn:'blur'}"/ >                                                           
+                                 </md-input-container>                                  
+								<div flex="30"></div> 
+                                  <!-- validation for Business Name -->
+			                     <div  class="validation-messages" ng-show="business.bname">  
+		                              <div  ng-messages="businessForm.bname.$error">
+									      <div  ng-message=" required">
+									        Business name is required
+									      </div>
+									        <div  ng-message="maxlength">
+									      Your Business name is too long must be of 40 characters
+									      </div>
+								      </div>
+								</div>                              
+                            </div>
+                            
+														
+                           <!--business Phone and Email-->
+                            <div layout="row" class="ccrow">
+                                <div layout="column" flex="30">
+                                    <md-input-container>
+                                      <label>Business Phone<span class="mandate-field"> * </span></label>	
+                                      <input ng-model="business.phone" type="tel" name="bphone" ng-maxlength="20" ng-pattern="/^\+?\d+$/" required ng-blur="business.bphone=true" ng-model-options="{updateOn:'blur'}"/>
+                                    </md-input-container>
+                                     <!-- Added validation for Business Phone -->
+	                                 <div class="validation-messages" ng-show="business.bphone">  
+					                      <div ng-messages="businessForm.bphone.$error">
+											      <div  ng-message="required">
+											        Business Number is required
+											      </div>
+											      <div   ng-message="pattern">
+											      Business Number can only have numbers or (+) sign
+											      </div>
+											      <div  ng-message="maxlength">
+											      Your business number is too long
+											      </div>
+										 </div>
+	                              </div>
+                                </div>
+                               <div flex="10"></div>
+                                <div layout="column" flex="30">
+                                    <md-input-container>
+                                      <label>Business Email<span class="mandate-field"> * </span></label>	
+                                      <input ng-model="business.email" type="email" name="bemail" ng-maxlength="40" required ng-model-options="{updateOn:'blur'}" ng-blur="business.bemail=true">
+
+                                    </md-input-container>
+                                    <!-- Added Validation for Email -->
+		                              <div class="validation-messages" ng-show="business.bemail">  
+					                    <div ng-messages="businessForm.bemail.$error">
+										     <div  ng-message="required">
+											        Email is required
+											 </div>
+											 <div ng-message="email">
+											       Invalid email address.
+											 </div>
+											 <div ng-message="maxlength">
+											      Your email address is too long
+											 </div>
+										</div>
+		                              </div>
+                                    
+                                </div>
+                            </div>
+							
+							<!--street and country-->
+                            <div layout="row" class="ccrow">
+                                <div layout="column" flex="30">
+                                    <md-input-container>
+                                      <label>Street Address<span class="mandate-field"> * </span></label>	
+                                      <input ng-model="business.address" name="baddress" required  ng-blur="business.baddress=true" ng-model-options="{updateOn:'blur'}"> 
+                                    </md-input-container>
+                                     <!-- add Validation for address -->
+									 <div  class="validation-messages" ng-show="business.baddress">  
+										 <div ng-messages="businessForm.baddress.$error">
+											 <div ng-message=" required">
+													Street Address is required
+											  </div>
+										</div>
+									 </div>                              
+                                </div>
+								<div flex="10"></div>
+                                 <div layout="column" flex="30">
+                                    <div layout-wrap class="select-box" layout="column">
+                                        <label class="match-label">Country<span class="mandate-field"> * </span></label>
+                                        	<md-select  ng-model="business.country" name="bcountry"  required ng-click="business.bcountry=true" flex="" ng-change="onCountryChange()">
+								<md-option ng-value="country" ng-repeat="country in countryList">{{country.value}}</md-option>
+								</md-select>  
+								<!-- added validation for country -->
+								<div class="validation-messages" ng-show="business.bcountry"> 
+								<div ng-messages="businessForm.bcountry.$error">
+									 <div ng-message="required">Country is required </div> 
+									</div>
+								</div> 
+                                    </div>
+                                   
+                                </div>
+                                
+                            </div>
+                           
+							<!-- state and City -->
+                            <div layout="row" class="ccrow">
+                               
+                                <div layout="column" flex="30">
+                                    <div layout-wrap class="select-box" layout="column">
+                                        <label class="match-label">State<span class="mandate-field"> * </span></label>
+                                        <md-select ng-model="business.state" name="bstate" required ng-click="business.bstate=true" flex="" 
+												   ng-disabled="!business.country"  ng-change="onStateChange()"> 
+												<md-option ng-value="state" ng-repeat="state in stateList">{{state}}</md-option>
+											</md-select>
+                                        <div class="validation-messages" ng-show="business.bstate"> 
+										<div ng-messages="businessForm.bstate.$error">
+											 <div ng-message="required">State is required </div> 
+										</div>
+								 	</div> 
+                                    </div>
+                                </div>
+								<div flex=10></div>
+                                <div layout="column" flex="30">
+                                    <div layout-wrap class="select-box" layout="column">
+                                        <label class="match-label">City<span class="mandate-field"> * </span></label>
+                                        	<md-select required ng-model="business.city" name="bcity" flex=""  ng-click="business.bcity=true" ng-disabled="!business.state" 												style="min-width: 30px;" ng-model-options="{updateOn:'blur'}" ng-blur="user.cityvar=true"> <md-option
+												 ng-value="city" ng-repeat="city in cityList">{{city.name}}</md-option>
+											</md-select>                                        
+                                        <!-- add validation for City -->
+							 <div class="validation-messages" ng-show="business.bcity"> 
+								<div  ng-messages="businessForm.bcity.$error">
+									 <div ng-message="required">City is required </div> 
+								</div>
+							</div> 
+                                    </div>
+                                     
+                                </div>
+                            </div>
+                            
+                           	<div layout="column" flex="70" class="trip-advisior">
+                            	<p>Verifying your Business with tripadvisor will help build trust</p>
+                                <div layout="row">
+                                	<span class="tripadvisior-icon"></span>
+                                    <div> 
+                                        <span class="">Business tripadvisor ID </span>
+                                        <input ng-model="business.tripadvisorId"  name="tripId" required class="custom-input" placeholder="" ng-model-options="{updateOn:'blur'}">
+                                        <p><a href="/UrbanLife/service/app/v1/tripadvisor/verify/94330">Verify Business</a>
+                                    </div>
+                                </div>
+                            </div>
+
+					<div class="extra-content" layout="column" layout-align="end start"
+						flex="20">
+						<div class="upload-photo" layout="row" layout-align="start start">
+							<p>Showcase Your Business Photos</p>
+							<div class="fileUpload btn btn-primary" style="margin: 0 15px;">
+								<span id="upload">Upload Photo</span> <input type="file"
+									id="file" file-model="photo" class="upload"
+									ng-init="imageInvalide=false;filename=null;path=null;showImg=false" />
+
+							</div>
+							
+						
+							<img ng-src="{{path}}" ng-show="showImg"  width="80px" height="80px" style="border:none;"/>
+						</div>
+						<div class="upload-messages">
+							<div class="imageValideMsg" ng-show="imageInvalide">Please
+								choose image of format .jpg, .jpeg, .png, or .gif only</div>
+						</div>
+					</div>
+					<br></br>
+
+
+
+
+
+
+					<!-- added for manager toggle -->
+                <div ng-show="business.manager">
+                
+                	<label class="match-label">Manager's Full Name</label>
+                        <div layout layout-sm="column">
+                          <md-input-container flex>
+                              <label>First Name</label>
+                              <input type="text"  name="mngfname" ng-model="business.mngfirstname" ng-maxlength="20" ng-model-options="{updateOn:'blur'}"> <!-- required ng-click="user.mngfname=true" -->
+							<!--  <div  class="validation-messages" ng-show=" user.mngfname">  
+		                              <div ng-messages="userForm.mngfname.$error">
+								      <div id="errorMsg" ng-message=" required">
+								        Manager's first name is required
+								      </div>
+								        <div id="errorMsg" ng-message="maxlength">
+								      Manager's first name is too long
+								      </div>
+								      </div>
+							</div>  -->
+							  
+                          </md-input-container>  
+                          <md-input-container flex>
+                              <label>Middle Name</label>
+                              <input ng-model="business.mngmiddleName"  ng-maxlength="20">
+                          </md-input-container>
+                          <md-input-container flex>
+                              <label>Last Name</label>
+                              <input ng-model="business.mnglastName"  ng-maxlength="20">
+                          </md-input-container>
+                        </div>
+                        
+                       <!-- added for manager's email --> 
+                        <div layout="column" flex="40" class="ccrow">
+                            <md-input-container>
+                                 <label>User Name<span class="mandate-field"> * </span></label>	
+                                 <input ng-model="business.mnguseremail" type="email" name="mngemail" ng-maxlength="40" required  ng-blur="business.mngemail=true" ng-model-options="{updateOn:'blur'}">
+							<label class="match-label">( An invitation will be sent to your manager at this email)</label>
+							</md-input-container>
+								<!-- Added Validation for Email -->
+                              <div class="validation-messages" ng-show="business.mngemail">  
+			                    <div ng-messages="businessForm.mngemail.$error">
+								     <div ng-message="required">
+									        Email is required
+									 </div>
+									 <div  ng-message="email">
+									       Invalid email address.
+									 </div>
+									 <div   ng-message="maxlength">
+									      Your email address is too long
+									 </div>
+								</div>
+                              </div>   							
+                        </div>
+                		                
+                </div>
+                
+                             
+                           
+                <div class="reg-btns">
+                <!-- Don't chagne the Disabled -->
+                
+						<md-button class="md-raised md-primary blue-btn"
+							ng-disabled="(businessForm.bname.$dirty && businessForm.bname.$invalid) || 
+										(!businessForm.bname.$dirty && businessForm.bname.$invalid) ||
+										
+                                		(businessForm.bphone.$dirty && businessForm.bphone.$invalid) || 
+                                		(!businessForm.bphone.$dirty && businessForm.bphone.$invalid) || 
+                                		
+                                		(businessForm.bemail.$dirty && businessForm.bemail.$invalid) ||
+                                		(!businessForm.bemail.$dirty && businessForm.bemail.$invalid) ||
+                                		
+                                		(businessForm.bcity.$dirty && businessForm.bcity.$invalid) || 
+                                		(!businessForm.bcity.$dirty && businessForm.bcity.$invalid) || 
+                                		
+                                		(businessForm.baddress.$dirty && businessForm.baddress.$invalid) ||
+                                		(!businessForm.baddress.$dirty && businessForm.baddress.$invalid) ||
+                                		
+                                		(businessForm.bcountry.$dirty && businessForm.bcountry.$invalid)||
+                                		(!businessForm.bcountry.$dirty && businessForm.bcountry.$invalid)||
+                                		
+                                		(businessForm.bstate.$dirty && businessForm.bstate.$invalid)||
+                                		(!businessForm.bstate.$dirty && businessForm.bstate.$invalid) ||
+                                		
+                                		(business.manager && businessForm.mngemail.$dirty && businessForm.mngemail.$invalid)||
+                                		(business.manager && !businessForm.mngemail.$dirty && businessForm.mngemail.$invalid)|| (business.imagevalide)"
+                                		
+                                		
+							ng-click='addBusiness()'>Next</md-button>
+						<!--  <a href="#sign-up"><md-button class="md-raised md-primary black-btn">Back</md-button></a>-->
+						<md-button class="md-raised md-primary hollow-btn">Reset</md-button>
+					</div>
+					  </form>
+                    </div>
+				</div>
+		  </md-content>
+		</div>
+</div>
+    <md-toolbar class="footer" layout="column" layout-align="center end">
+            <h6>&copy; 2015 Urban Life</h6>
+    </md-toolbar>

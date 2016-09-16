@@ -1,0 +1,170 @@
+
+<div id="homeTemplate">
+<br>
+<div id="leftColumn">
+<form >
+
+<table class="w3-table w3-bordered w3-striped">
+<tr>
+	<th align="left">Name: </th>
+	<td>{{pName}}</td>
+</tr>
+<tr>
+	<th align="left">DOB: </th>
+	<td>{{dob}}</td>
+</tr>
+<tr>
+	<th align="left">Address: </th>
+	<td>{{address[0].line[0] + "," + address[0].city }}</td>
+</tr>
+<tr>
+	<th align="left">Postal: </th>
+	<td>{{address[0].postalCode }}</td>
+</tr>
+<tr>
+	<th align="left">Country: </th>
+	<td>{{address[0].country }}</td>
+</tr>
+</table>
+</form></div>
+
+	<div id="rightColumn">
+	<ul id="nav">
+		<li><a  ng-click="getCarePLan()">CarePlan</a></li>
+		<li><a ng-click="getAI()">AllergyIntolerance</a></li>
+		<li><a ng-click="getDO()">DiagnosticOrder</a></li>
+		<li><a ng-click="getMO()">MedicationOrder</a></li>
+	</ul>
+	</div>
+<div id = "patientTemplate" ng-show="cp" >
+	<h1>Care Plan</h1>
+	<hr width="100%">
+	
+	
+	
+	<table ng-repeat="data in cpData" border="1" style="border: 1px">
+	<tr>
+	<td>
+    	CarePlan: {{$index+1}} 
+	</td>
+	<td>
+		<table class="w3-table w3-bordered w3-striped">
+	<tr>
+		<th align="left">Status: </th>
+		<td>{{data.resource.status}}</td>
+	</tr>
+	<tr>
+		<th align="left">Modified: </th>
+		<td>{{data.resource.modified}}</td>
+	</tr>
+	<tr >
+			<td colspan="1" width="60%"><hr></td>
+		</tr>
+	</table>
+	</td>
+	</tr>
+	
+	</table>
+</div>
+<div id = "patientTemplate" ng-show="ai">
+	<h1>Allergies</h1>
+	<table ng-repeat="data in aiData" border="1" style="border: 1px">
+	<tr>
+	<td>
+    	Allergy: {{$index+1}} 
+	</td>
+	<td>
+		<table class="w3-table w3-bordered w3-striped" >
+		<tr>
+			<th align="left">Status: </th>
+			<td>{{data.resource.status}}</td>
+		</tr>
+		<tr>
+			<th align="left">Criticality: </th>
+			<td>{{data.resource.criticality}}</td>
+		</tr>
+		<tr>
+			<th align="left">Category: </th>
+			<td>{{data.resource.category}}</td>
+		</tr>
+		<tr>
+			<th align="left">Type: </th>
+			<td>{{data.resource.type}}</td>
+		</tr>
+		<tr >
+			<td colspan="1" width="60%"><hr></td>
+		</tr>
+		</table>
+	</td>
+	</tr>
+	
+	</table>
+</div>
+<div id = "patientTemplate" ng-show="dOrder">
+	<h1>Diagnostic Orders</h1>
+	<table ng-repeat="data in doData" border="1" style="border: 1px">
+	<tr>
+	<td>
+    	D Order: {{$index+1}} 
+	</td>
+	<td>
+		<table class="w3-table w3-bordered w3-striped" >
+		<tr>
+			<th align="left">Status: </th>
+			<td>{{data.resource.status}}</td>
+		</tr>
+		<tr>
+			<th align="left">Event-Status: </th>
+			<td>{{data.resource.event[0].status}}</td>
+		</tr>
+		<tr>
+			<th align="left">Event Date-Time: </th>
+			<td>{{data.resource.event[0].dateTime}}</td>
+		</tr>
+		<tr>
+			<th align="left">Event-Actor: </th>
+			<td>{{data.resource.event[0].actor.reference}}</td>
+		</tr>
+		<tr >
+			<td colspan="1" width="60%"><hr></td>
+		</tr>
+		</table>
+	</td>
+	</tr>
+	
+	</table>
+</div>
+<div id = "patientTemplate" ng-show="mo">
+	<h1>Medication Orders</h1>
+	<table ng-repeat="data in moData" border="1" style="border: 1px">
+	<tr>
+	<td>
+    	M Order: {{$index+1}} 
+	</td>
+	<td>
+		<table class="w3-table w3-bordered w3-striped" >
+		<tr>
+			<th align="left">Status: </th>
+			<td>{{data.resource.status}}</td>
+		</tr>
+		<tr>
+			<th align="left">Route </th>
+			<td>{{data.resource.dosageInstruction[0].route.text}}</td>
+		</tr>
+		<tr>
+			<th align="left">Route quantity: </th>
+			<td>{{data.resource.dosageInstruction[0].doseQuantity.value + data.resource.dosageInstruction[0].doseQuantity.unit }}</td>
+		</tr>
+		
+		</table>
+	</td>
+	</tr>
+	
+	</table>
+</div>
+	
+</div>
+
+
+
+

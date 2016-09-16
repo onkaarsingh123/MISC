@@ -1,0 +1,102 @@
+
+<div class="welcomePage" ng-controller="welcomeOfferCtrl" ng-init="checkUsertokenwelocmeOffer();getsessiondata();">
+    <md-toolbar class="header" layout="row" layout-align="space-between start">
+            <h1 class="logo">UrbanLife</h1>
+            <div class="top-right">
+            	<ul>
+                	<li>
+                    	<div class="profile-photo"></div>
+                        <span class="welcome-user">Welcome {{username}}!</span>
+                    </li>
+                    <li>
+                    	<span class="bell-icon"></span>
+                    </li>
+                    <li>
+                    	<span class="setting-icon"></span>
+                    </li>
+                </ul>
+            </div>
+    </md-toolbar>
+    
+	<div layout="row" flex>
+        <md-sidenav class="" md-component-id="left" md-is-locked-open="$media('gt-sm')">
+            <div class="dashboard">
+            	<span class="icon"></span>
+            	<h5>Dashboard</h5>
+            </div>
+            <div class="create-deals">
+            	<span class="icon"></span>
+            	<h5>Create Deals</h5>
+            </div>
+            <div class="view-deals">
+            	<span class="icon"></span>
+            	<h5>View Deals</h5>
+            </div>
+            <div class="billings">
+            	<span class="icon"></span>
+            	<h5>Billings</h5>
+            </div>
+        </md-sidenav>
+		<div layout="column" flex class="main-content">
+            <md-content layout="column">
+                <div class="top-headings"> 
+                    <h3>Congratulations {{username}} !</h3>
+                    <h4>You just added a Business. </h4>
+                    <h4>You can edit your Business by clicking by clicking across the 'Business'.</h4>
+				</div>
+                <div layout="column" flex class="black-overlay">
+                	<div class="offer-circles" layout="row">
+						<div layout="column" layout-align="center center" flex>
+                        	<div layout="row" layout-fill layout-align="center center">
+                            	<div flex></div>
+                            	<md-button class="md-primary md-fab md-raised">1</md-button>
+                            	<div class="hr-bar" flex ></div>
+                            </div>    
+                            <h4 class="orange-text">Build Your Offers</h4>
+                            <h5>Reserved Offers or Walk-in Offers</h5>
+						</div>
+                        <div layout="column" layout-align="center center" flex>
+                        	<div layout="row" layout-align="center center" layout-fill>
+                            	<div class="hr-bar" flex ></div>
+                            	<md-button class="md-primary md-fab md-raised">2</md-button>
+                            	<div class="hr-bar" flex ></div>
+                            </div>    
+                            <h4 class="orange-text">Choose your Offers type</h4>
+                            <h5>Seat based or Time based</h5>
+                        </div>
+                        <div layout="column" layout-align="center center" flex>
+                        	<div layout="row" layout-fill layout-align="center center">
+                            	<div class="hr-bar" flex ></div>
+                            	<md-button class="md-primary md-fab md-raised">3</md-button>
+                            	<div flex></div>
+                            </div> 
+                            <span class="hr-bar"></span>
+                            <h4 class="orange-text">Repeat the Offers</h4>
+                            <h5>A Offers or the entire week’s Offers</h5>
+                        </div>                    	
+                    </div>
+                    <div class="welcome-text" layout="column" layout-align="center center">
+                    	<h4>It is free to post your Deal on UrbanLife. </h4>
+                        <h4>We only take a percentage when your customers accepts the Deal. </h4>
+                        <h4>To get paid, you'll need your routing and bank account numbers for your different Business</h4>
+                        <div layout="row" layout-fill >
+                            <div flex></div>
+                            <div class="welcome-controls">
+                                <md-button class="md-raised md-primary orange-btn" ng-click='NextPage()'>Continue</md-button>
+                                <md-button class="md-raised md-primary hollow-btn" ng-click='NextPage()'>Continue</md-button>
+                            </div>
+                            <div flex class="faq-link" layout="row" layout-align="end center">
+                                <a href="#" class="orange-text">FAQ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+		  </md-content>
+		  
+      </div>
+</div>
+ <md-toolbar class="footer" layout="column" layout-align="center end">
+            		<h6>&copy; 2015 Urban Life</h6>
+                
+            </md-toolbar>
+</div>

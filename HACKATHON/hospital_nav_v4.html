@@ -1,0 +1,69 @@
+ <!DOCTYPE HTML>
+<head>
+	<script  type="text/javascript"  src="http://maps.micello.com/webmap/v0/micellomap.js"></script>
+	<script  type="text/javascript"  src="http://maps.micello.com/plugins/Directory/Directory.js"></script>
+	<link rel="stylesheet" href="styles.css">
+	<script  type="text/javascript">
+		window.onload = function(){
+			document.getElementById('submit_hosp_name').addEventListener("click", GetMapAndDisplay);
+		}
+		function GetMapAndDisplay()
+		{
+			//send an ajax request to apigee to get the id and hosp details to display map
+			xmlHttp = new XMLHttpRequest();
+			//get the hospital name
+				//var hospital_name = document.getElementById('hospital_name').value;
+				var hosp_ele = document.getElementById('hospital_name');
+				var hospital_name = hosp_ele.options[hosp_ele.selectedIndex].text;
+			var url = "http://onkaar2011-test.apigee.net/gethospitals?hospitalName="+hospital_name;
+			xmlHttp.open('GET',url,true);
+			xmlHttp.onreadystatechange = updatePageWithMap;
+			xmlHttp.send(null);
+		}
+		function updatePageWithMap()
+		{
+			var requiredMapId= 0;
+			if(xmlHttp.readyState==4 && xmlHttp.status==200)
+			{
+				var hosp_text = xmlHttp.responseText
+				var jsonObj = JSON.parse(hosp_text);
+				requiredMapId = jsonObj.hospital_map_id;
+			}
+				url_for_map = "http://www.micello.com/e/"+requiredMapId;
+				document.getElementById("mapFrame").setAttribute("src", url_for_map);
+				document.getElementById("mapFrame").setAttribute("class", "show");
+		}
+	</script>
+</head>
+<body>
+	<div class="header">
+		<h1> Welcome To Patient Navigation Hospital API </h1>
+	</div>
+	<div class="container">
+		<table>
+			<tr>
+				<td>
+					<label for="hospital_name">
+						<h2>Enter the hospital name: </h2>
+					</label>
+				</td>
+				<td>
+					<select name="hospital_name" id="hospital_name">
+					  <option value="Texas Health Presbytarian Hospital">Texas Health Presbytarian Hospital</option>
+					  <option value="University of Rochester Medical Center">University of Rochester Medical Center</option>
+					  <option value="Texas Health Presbytarian Hospital">Hospital for Special Surgery</option>
+					  <option value="Texas Health Presbytarian Hospital">Barton Memorial Hospital</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="button" id="submit_hosp_name" value="View hospital map and Navigate">
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div  id="mapElement">
+		<iframe id="mapFrame" src="" class="hide" frameborder="1"></iframe>
+	</div>
+</body>

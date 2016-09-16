@@ -1,0 +1,69 @@
+<div class="abcdPage" ng-controller="welcomeBusinessCtrl" ng-init="checkUsertokenwelocme();getsessiondata();">
+    <md-toolbar class="header" layout="row" layout-align="space-between start">
+            <h1 class="logo">UrbanLife</h1>
+            <div class="top-right">
+            	<ul>
+                	<li>
+                    	<div class="profile-photo"></div>
+                        <span class="welcome-user">Welcome {{username}}!</span>
+                    </li>
+                    <li>
+                    	<span class="bell-icon"></span>
+                    </li>
+                    <li>
+                    	<span class="setting-icon"></span>
+                    </li>
+                </ul>
+            </div>
+    </md-toolbar>
+    
+	<div layout="row" flex>
+        <md-sidenav class="" md-component-id="left" md-is-locked-open="$media('gt-sm')">
+            <div class="dashboard">
+            	<span class="icon"></span>
+            	<h5>Dashboard</h5>
+            </div>
+            <div class="create-deals">
+            	<span class="icon"></span>
+            	<h5>Create Deals</h5>
+            </div>
+            <div class="view-deals">
+            	<span class="icon"></span>
+            	<h5>View Deals</h5>
+            </div>
+            <div class="billings">
+            	<span class="icon"></span>
+            	<h5>Billings</h5>
+            </div>
+        </md-sidenav>
+		<div layout="column" flex class="main-content">
+            <md-content>
+                <div class="top-headings"> 
+                    <h3>Welcome {{username}}!</h3>
+                    <h4>Your account has been verified. Grow your Business with UrbanLife.</h4>
+                    <h4> Please add a Business first in order to create Deals.</h4>
+				</div>
+                <div layout="row">
+                	<div flex class="add-business">
+                    	<h3>Add Business</h3>
+						<h4>Add your Businesses and some basic info</h4>
+                        <h4>and you are ready to create Deals.</h4>
+                        <md-button class="md-raised md-primary blue-btn" ng-click='goToBusiness()'>Add Business</md-button>
+					</div>    
+                    <div flex class="create-deals">
+                    	<h3>Create Deals</h3>
+                        
+						<h4>Provide your customer which can suit their needs. You</h4>
+                        <h4>can create two kind of Deals: time based Deals and </h4>
+                        <h4>seat based Deals</h4>
+                       <md-button class="md-raised md-primary black-btn">Continue</md-button>
+					
+                 	</div>   
+				</div>
+		  </md-content>
+      </div>
+</div>
+    <md-toolbar class="footer" layout="column" layout-align="center end">
+            <h6>&copy; 2015 Urban Life</h6>
+    </md-toolbar>
+</div>

@@ -1,0 +1,104 @@
+
+	<md-toolbar class="header">
+        <div class="container" layout="row" layout-align="space-between start">
+            <h1 class="logo">UrbanLife</h1>
+            <h5>Already a Merchant? <a href="#">SignIn</a></h5>
+        </div>
+    </md-toolbar>
+    <md-content layout="row" flex>
+        <div class="container" layout="column" ng-controller="registrationCtrl">
+            <div class="reg-top"> 
+                <h2>
+                    <span class="reg-top-title">Basic Information</span>
+                    <md-button class="md-primary md-fab md-raised">1</md-button>
+                    <span class="hz-line"></span>
+                    <md-button class="md-primary md-fab">2</md-button>
+                </h2>
+            </div>
+            <div layout="row" flex>
+                <div layout="column" class="md-padding form-content" flex="60">
+                   <form name="userForm" novalidate >
+                        <label class="match-label">Name<span class="mandate-field"> * </span></label>
+                        <div layout layout-sm="column">
+                            <md-input-container flex>
+                              <label>First Name</label>
+                              <input type="text"  name="fName" ng-model="user.firstname" required>
+                              <div class="validation-messages" ng-show="userForm.fName.$dirty && userForm.fName.$invalid">
+							 	<div ng-show="userForm.fName.$error.required">first name is required.</div>  
+							  </div>
+                            </md-input-container>
+                            
+                            <md-input-container flex>
+                              <label>Middle Name</label>
+                              <input ng-model="user.middleName">
+                            </md-input-container>
+                            <md-input-container flex>
+                              <label>Last Name</label>
+                              <input ng-model="user.lastName">
+                            </md-input-container>
+                            
+                            <div class="extra-content" layout="row" layout-align="end start" flex="20">
+                	<div class="upload-photo">
+                        <span class="file-upd-icon"></span>
+                       <div class="fileUpload btn btn-primary">
+                            <span id="upload" >Upload Photo</span>
+                            <input type="file" id="file" file-model="photo" class="upload"/>
+                       </div>
+                    </div>
+                </div>      
+                            
+                         </div>
+                          
+                        <div layout layout-sm="column">
+                            <md-input-container flex="80">
+                              <label>Email<span class="mandate-field"> * </span></label>	
+                              <input ng-model="user.eemail" type="email" name="email" required>
+                              <div class="validation-messages" ng-show="userForm.email.$dirty && userForm.email.$invalid">
+                                <div ng-show="userForm.email.$error.required">Email is required.</div>
+                                <div ng-show="userForm.email.$error.email">Invalid email address.</div>
+                              </div>
+                            </md-input-container>
+                        </div>
+                        <div layout layout-sm="column">
+                            <md-input-container  flex="80">
+                              <label>Mobile<span class="mandate-field"> * </span></label>
+                              <input ng-model="user.telephone" name="telephone" required>
+                              <div class="validation-messages" ng-show="userForm.telephone.$dirty && userForm.telephone.$invalid">
+                                <div ng-show="userForm.telephone.$error.required">Mobile Number is required.</div>
+                              </div>
+                            </md-input-container>
+                        </div>
+                        <div layout layout-sm="column">
+                            <md-input-container  flex="80">
+                              <label>Password<span class="mandate-field"> * </span></label>
+                              <input ng-model="user.password" type="password" name="password" required>
+                              <div class="validation-messages" ng-show="userForm.password.$dirty && userForm.password.$invalid">
+                                <div ng-show="userForm.password.$error.required">Password is required.</div>
+                              </div>
+                            </md-input-container>
+                        </div>
+                        <div layout layout-sm="column">
+                            <md-input-container  flex="80">
+                              <label>Retype Password<span class="mandate-field"> * </span></label>
+                              <input ng-model="user.rpassword" type="password" name="rpassword" required>
+                              <div class="validation-messages" ng-show="userForm.rpassword.$dirty && userForm.rpassword.$invalid">
+                                <div ng-show="userForm.rpassword.$error.required">|Re-Password is required.</div>
+                              </div>
+                            </md-input-container>
+                        </div>
+                                    
+                         <md-button class="md-raised md-primary"  ng-disabled="userForm.fName.$dirty && userForm.fName.$invalid || userForm.email.$dirty && userForm.email.$invalid || userForm.telephone.$dirty && userForm.telephone.$invalid || userForm.password.$dirty && userForm.password.$invalid || userForm.rpassword.$dirty && userForm.rpassword.$invalid"  ng-click="nextPage()">Continue</md-button> 
+                        
+                        </form>
+                </div>
+               
+            </div>
+        </div>
+    </md-content>
+    <md-toolbar class="footer">
+        <div class="container" layout="column" layout-align="center end">
+            <h6>&copy; 2015 Urban Life</h6>
+        </div>
+    </md-toolbar>
+
+

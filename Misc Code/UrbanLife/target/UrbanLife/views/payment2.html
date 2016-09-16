@@ -1,0 +1,140 @@
+	<md-content layout="row" flex>
+        <div class="container" >
+            <div class="reg-top"> 
+                <h2>
+                	<span class="reg-top-title">Enter Credit Card Information</span>
+					<md-button class="md-primary md-fab">1</md-button>
+                    <span class="hz-line"></span>
+                	<md-button class="md-primary md-fab md-raised">2</md-button>
+                </h2>
+            </div>
+            <div layout="row" flex>
+                <div layout="column" class="md-padding form-content" flex="60" ng-controller="paymentCtrl">
+                   <form name="userForm" novalidate>
+                        <div layout layout-sm="column">
+                            <md-input-container flex='70'>
+                              <label>Full Name<span class="mandate-field"> * </span></label>
+                              <input required name="name" ng-model="ccinfo.name" >
+                              <div class="ccnamemsg">Name as it appears on Credit Card<span class="pen-icon"></span></div>
+                              <div ng-show="userForm.name.$dirty && userForm.name.$invalid">
+                                <div ng-show="userForm.name.$error.required">Name is required.</div>
+    </div>
+                            </md-input-container>
+                          </div> 
+                        <div layout layout-sm="column">
+                        	<md-input-container flex="30">
+                              <label>Credit card number<span class="mandate-field"> * </span></label>	
+                              
+                              <input
+							      type="text"
+							      name="ccnumber"
+							      ng-model="ccinfo.ccnumber"
+							      required
+							      data-credit-card-type
+							      data-ng-pattern="/^[0-9]+$/"
+							      data-ng-minlength="15"
+							      maxlength="19"
+							      placeholder="Card Number" ng-blur="ccinfo.carderror=true;">
+                              
+                              <div class="validation-messages" ng-show="ccinfo.carderror">
+                                  <div ng-show="userForm.ccnumber.$error.minlength">Credit card must be 15-19 digits</div>
+							      <div ng-show="userForm.ccnumber.$error.pattern">Credit card must consist of only numbers</div>
+							      <div ng-show="userForm.ccnumber.$error.invalid">Credit card must be a valid Amex, Visa, Discover, or Master Card</div>
+							     
+                              </div>
+                            </md-input-container>
+                           <div flex>&nbsp;</div>
+                        </div>
+                        <div layout layout-sm="column">
+                            <div flex="30">
+                                <label class="match-label">Card Type</label>	
+                                <md-radio-group class="cctypes" ng-model="ccinfo.ccType">
+                                    <md-radio-button value="visa"><span class="visa-icon"></span></md-radio-button>
+                                    <md-radio-button value="master-card"> <span class="mastercard-icon"></span> </md-radio-button>
+                                    <md-radio-button value="american-express"><span class="amex-icon"></span></md-radio-button>
+                                </md-radio-group>
+                              <input type="hidden" ng-model="ccinfo.ccType" name="ccType" required>
+                            </div>
+                            
+                            <div layout="row" flex="40" layout-align="end center">
+                                <md-input-container flex="90">
+                                  <label>Security Code</label>
+                                  <input ng-model="ccinfo.securityCode">
+                                  <span class="cardsback-icon"></span>
+                                </md-input-container>
+                            </div>
+                            
+                        </div>
+                        <div layout layout-sm="column">
+                        <div flex="35" class="select-box" layout="column" layout-align="start start">
+                        <label class="match-label">Expiry Month<span class="mandate-field"> * </span></label>
+                       		    <md-select ng-model="ccinfo.expiry_month" flex="">
+                                        <md-option value="1" ng-selected="selected">1</md-option>
+                                        <md-option value="2">2</md-option>
+                                        <md-option value="3">3</md-option>
+                                        <md-option value="4">4</md-option>
+                                        <md-option value="5">5</md-option>
+                                        <md-option value="6">6</md-option>
+                                        <md-option value="7">7</md-option>
+                                        <md-option value="8">8</md-option>
+                                        <md-option value="9">9</md-option>
+                                        <md-option value="10">10</md-option>
+                                        <md-option value="11">11</md-option>
+                                        <md-option value="12">12</md-option>
+                                </md-select>
+                             </div>    
+                           <div layout="row" flex="40" layout-align="end center"> 
+                            <label class="match-label">Expiry Year <span class="mandate-field"> * </span></label>
+                                <md-select ng-model="ccinfo.expiry_year" flex="">
+                                        <md-option value="2015" ng-selected="selected">2015</md-option>
+                                        <md-option value="2016">2016</md-option>
+                                        <md-option value="2017">2017</md-option>
+                                        <md-option value="2018">2018</md-option>
+                                        <md-option value="2019">2019</md-option>
+                                        <md-option value="2020">2020</md-option>
+                                        <md-option value="2021">2021</md-option>
+                                        <md-option value="2022">2022</md-option>
+                                        <md-option value="2023">2023</md-option>
+                                        <md-option value="2024">2024</md-option>
+                                        <md-option value="2025">2025</md-option>
+                                        <md-option value="2026">2026</md-option>
+                                </md-select>
+                            </div>
+                          
+                          <div flex>&nbsp;</div>
+						</div>
+                        <div layout layout-sm="column">
+                        	<div flex="35" class="select-box" layout="column" layout-align="start start">
+                            	<label class="match-label">Country<span class="mandate-field"> * </span></label>
+                                <md-select ng-model="ccinfo.country" flex="">
+                                        <md-option value="USA">USA</md-option>
+                                        <md-option value="UK">UK</md-option>
+                                        <md-option value="CA">CA</md-option>
+                                </md-select>
+                            </div>
+                            <md-input-container flex="30">
+                              <label>Postal Code<span class="mandate-field"> * </span></label>
+                              <input ng-model="ccinfo.postCode">
+                            </md-input-container>
+                        </div>
+                        <div layout layout-sm="column">
+                            <md-input-container flex>
+                              <label>Billing Address<span class="mandate-field"> * </span></label>
+                              <input ng-model="ccinfo.billingAdd">
+                            </md-input-container>
+                        </div>
+                        <div class="reg-btns">
+                        <md-button class="md-raised md-primary" ng-click='registerMerchant()'>Sign up</md-button>
+                        <a href="#sign-up"><md-button class="md-raised md-primary black-btn">Back</md-button></a>
+						<md-button class="md-raised md-primary hollow-btn">Reset</md-button>                  
+                        </div>
+                        </form>
+                        </div>
+                        </div>
+                </div>
+                </md-content>
+            <md-toolbar class="footer">
+        		<div class="container" layout="column" layout-align="center end">
+            		<h6>&copy; 2015 Urban Life</h6>
+                </div>
+            </md-toolbar>

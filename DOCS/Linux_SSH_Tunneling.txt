@@ -1,0 +1,44 @@
+Linux commands to find a file:
+find / -type f -name httpd.conf
+
+ssh -N -L 3307:rds-demo-poc-onkaar.cguoj99ihscg.eu-west-1.rds.amazonaws.com:3306 ec2-user@172.31.35.234
+mysql -u root -p -h 127.0.0.1 -P 3306
+
+ssh -N -L 3306:rds-demo-poc-onkaar.cguoj99ihscg.eu-west-1.rds.amazonaws.com:3306 ec2-user@172.31.35.234
+
+ssh -N -L 3306:127.0.0.1:3306 ec2-user@172.31.41.254
+
+ssh -N -L 3306:127.0.0.1:3306 ec2-user@52.30.121.1
+
+Bearer z0Gg8gBZJCJacflo8PdAbjkO1MOs
+<!-- This AssignMessage policy sets  'Content-Type' header to 'application/xml;charset=UTF-8'.-->
+                <Step>
+                    <Name>SetResponseContentTypeToXML</Name>
+                    <Condition>response.header.Content-Type=null</Condition>
+                </Step>
+
+<!-- This AssignMessage policy sets  'Content-Type' header to 'application/atom+xml;charset=UTF-8' if server does not set it.-->	
+                <Step>
+                    <Name>SetContentTypeResourceXML</Name>
+                    <Condition>response.header.Content-Type=null</Condition>
+                </Step>
+
+ bDFFeDJaY2djODBuaEVhZXRwc2NZZ21melh4TTZQTXE6VVJQVXV4WXdlcUYyY2lHaA==
+Nzh5OHN5UkhYMUkzUFp5UE1ZdWZFTENxV215SlM1ZzI6UnFjZEdUZ20wRG9CZVk4YQ==
+
+
+dmJwd1ZUWWFuRzlURmlRQTBjM0Z4N1RMMElLS2Mzd1k6bHZsamYwdW5kdFJwbzR3Sw==
+
+I wanted to discuss a few things with you. 
+
+http://www.micello.com/developer/docs/v0/map-web-services 
+
+http://maps.micello.com/v3/search/community/keyword/Alpha?api_key=dff39142-1704-41ee-be61-bfcd48cbf804
+
+467152095909
+
+http://maps.micello.com/v3/search/community/3/keyword/Shoes?api_key=dff39142-1704-41ee-be61-bfcd48cbf804
+
+http://maps.micello.com/v3/search/community/467152095909/keyword/Shoes?api_key=dff39142-1704-41ee-be61-bfcd48cbf804
+
+http://onkaar2011-test.apigee.net/gethospitals?hospitalName=Hospital

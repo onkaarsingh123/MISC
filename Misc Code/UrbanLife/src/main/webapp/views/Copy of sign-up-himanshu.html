@@ -1,0 +1,92 @@
+<div class="container">
+        <div ng-app="urbanLifeApp" ng-controller="registrationCtrl" layout="column">
+            <md-toolbar layout="row" class="header" layout-align="space-between start">
+                <h1 class="logo">UrbanLife</h1>
+                <h5>Already a Merchant? <a href="#">signin</a></h5>
+            </md-toolbar>
+            <div class="reg-top"> 
+                <h2>
+                	<span class="reg-top-title">Basic Information</span>
+					<md-button class="md-primary md-fab md-raised">1</md-button>
+                    <span class="hz-line"></span>
+                	<md-button class="md-primary md-fab">2</md-button>
+                </h2>
+            </div>
+            <div layout="row" flex>
+                <md-content layout="column" class="md-padding form-content" flex="60">
+                   <form name="userForm" novalidate>
+                        <h5>Name</h5>
+                        <div layout layout-sm="column">
+                            <md-input-container flex>
+                              <label>First Name</label>
+                              <input type="text"  name="fName" ng-model="user.firstname" required>
+                              <div class="validation-messages" ng-show="userForm.fName.$dirty && userForm.fName.$invalid">
+							 	<div ng-show="userForm.fName.$error.required">first name is required.</div>  
+</div>
+                            </md-input-container>
+                            <md-input-container flex>
+                              <label>Middle Name</label>
+                              <input ng-model="user.middleName">
+                            </md-input-container>
+                            <md-input-container flex>
+                              <label>Last Name</label>
+                              <input ng-model="user.lastName">
+                            </md-input-container>
+                          </div>
+                          
+                        <div layout layout-sm="column">
+                            <md-input-container flex>
+                              <label>Email</label>	
+                              <input ng-model="user.email" type="email" name="email" required>
+                              <div class="validation-messages" ng-show="userForm.email.$dirty && userForm.email.$invalid">
+                                <div ng-show="userForm.email.$error.required">Email is required.</div>
+                                <div ng-show="userForm.email.$error.email">Invalid email address.</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                        <div layout layout-sm="column">
+                            <md-input-container flex>
+                              <label>Mobile</label>
+                              <input ng-model="user.telephone">
+                            </md-input-container>
+                        </div>
+                        <div layout layout-sm="column">
+                            <md-input-container flex>
+                              <label>Password</label>
+                              <input ng-model="user.password" type="password">
+                            </md-input-container>
+                        </div>
+                        <div layout layout-sm="column">
+                            <md-input-container flex>
+                              <label>Retype Password</label>
+                              <input ng-model="user.rpassword" type="password">
+                            </md-input-container>
+                        </div>
+                        
+                        <div class="extra-content" layout="row" layout-align="end start" flex="15">
+                	<div class="upload-photo">
+                        <span class="file-upd-icon"></span>
+                        <h5><a href="javascript:void(0);">Upload photo</a></h5>
+                       <!-- <input type="file" file-model="photo" class="upload"/>  -->
+                       
+                       <div class="fileUpload btn btn-primary">
+   							 <span>Upload</span>
+    						 <input type="file" file-model="photo" class="upload" />
+						</div>
+                       
+                 </div>
+                </div>
+                		
+        <md-button class="md-raised md-primary"  ng-disabled="userForm.fName.$dirty &&userForm.fName.$invalid"  ng-click="NextPage()">Continue</md-button> 
+                                    
+                        </form>
+                </md-content>   
+            	
+            </div>
+            </div>
+        <md-toolbar class="footer" layout-align="center end">
+            	<h6>&copy; 2015 Urban Life</h6>
+            </md-toolbar>
+    </div>
+	
+

@@ -1,0 +1,458 @@
+
+    
+	<div layout="row" flex>
+        <md-sidenav class="" md-component-id="left" md-is-locked-open="$media('gt-sm')">
+            <div class="dashboard">
+            	<span class="icon"></span>
+            	<h5>Dashboard</h5>
+            </div>
+            <div class="create-deals">
+            	<span class="icon"></span>
+            	<h5>Create Deals</h5>
+            </div>
+            <div class="view-deals">
+            	<span class="icon"></span>
+            	<h5>View Deals</h5>
+            </div>
+            <div class="billings">
+            	<span class="icon"></span>
+            	<h5>Billings</h5>
+            </div>
+        </md-sidenav>
+		<div layout="column" flex class="main-content businessdetl" ng-controller="detailsBusinessCtrl">
+            <md-content layout="column">
+                <div class="reg-top"> 
+                    <h3>
+                        <span class="reg-top-title">More About Business</span>
+                    </h3>
+                </div>
+                <div layout="row" flex>
+                    <div layout="column" class="md-padding form-content" flex="80">
+                        <form name="detailsForm" novalidate>
+                        	
+                            <div layout layout-sm="row">
+ 								<div flex="20"><h5>Category type </h5></div>
+                               	<div flex="80" layout="column">
+                                	<h5>Business(Tell us something about your Restaurant (max 250chars))</h5>
+                                    <md-input-container flex>
+											<textarea ng-model="business.businessDetails" bname="bDetails" columns="1"  maxlength="250"></textarea>
+									</md-input-container>  
+								</div>
+							</div>
+																					
+                            <div layout layout-sm="row">
+ 								<div flex="20"><h5>Cuisine </h5></div>
+                                <div flex="80" layout="column">
+                                	<!-- Add cusines related pop up -->
+								<div ng-controller="ModalDemoCtrl">
+									<script type="text/ng-template" id="cusines-popup.html">
+										
+<div class="modal-header">
+		<h3 class="modal-title">Select Cuisine</h3>
+	</div>
+	<div class="modal-body" layout="row" style="height:200px; overflow: auto; ">
+		<div flex>
+			<label ng-repeat="item in items" >
+				<md-checkbox id="cuisinebox"ng-model="item.checked" type="checkbox"  aria-label="Checkbox 1" value="{{item.name}}" ng-click="getValues(item.checked,item)"> {{item.name}}</md-checkbox>
+			</label>
+		</div>
+		<!--<span>{{ 
+ }}</span> -->
+	</div>
+	<div class="modal-footer" layout="row" layout-align="center center">
+		<md-button class="md-raised md-primary hollow-btn" ng-click="ok()">ok</md-button>
+	</div>
+
+</script>
+<button class="btn btn-default" ng-click="open()">Choose more Cuisine</button>
+<span class="cusine-chips" ng-repeat="selectedCuisine in show | filter:checked='true'| limitTo:'5'"> {{selectedCuisine.name}} </span>
+  
+							</div>
+							</div>
+                            </div>
+                            <div layout layout-sm="row" class="occupancies">
+ 								<div flex="20"><h5>Occupancies</h5></div>
+                                <div flex="80" layout="row" layout-align="space-between center">
+                                	<md-button class="md-raised md-primary hollow-btn" ng-click="business.minSeats=00;business.maxSeats=20;">< 20</md-button>
+                                    <md-button class="md-raised md-primary hollow-btn" ng-click="business.minSeats=20;business.maxSeats=40;">20 - 40</md-button>
+                                    <md-button class="md-raised md-primary hollow-btn" ng-click="business.minSeats=40;business.maxSeats=60;">40 - 60</md-button>
+                                   
+                                    
+                                   <md-button class="md-raised md-primary hollow-btn" ng-click="customClick=true">Custom</md-button>
+
+							Min:{{business.minSeats}}
+                                    Max:{{business.maxSeats}}
+								</div>							
+                            </div>
+                            <div ng-show="customClick" layout layout-sm="row">
+                            <div flex="20"></div>
+                            <div class="modal-header" flex="80" layout="column" layout-align="center center">
+                            <div layout="column" flex="40" layout-align="center center" class="customminmax">
+								<div layout="row" layout-align="center center">
+									<md-input-container flex="35" style="margin-right:15px;">
+	                             			 <label>Min Seats</label>
+	                             		 <input type="text"  name="minSeats" ng-model="business.minSeats" ng-maxlength="20">
+	
+									</md-input-container>
+									<md-input-container flex="35">
+	                             			 <label>Max Seats</label>
+	                             		 <input type="text"  name="maxSeats" ng-model="business.maxSeats" ng-maxlength="20">
+	
+									</md-input-container>
+								</div>
+								<md-button class="md-raised md-primary hollow-btn" ng-click="customClick=false">Ok</md-button>
+							</div> 
+							</div>
+							</div>
+	
+                        	<div class="operating-hrs" layout="row">
+                            	<div flex="20"><h5>Operating Hours</h5></div>
+                            	<div layout="column" flex="80" class="operating-hrs-grid">
+                                    <div layout="row" class="heading-row">
+                                        <div flex="10">Day</div>
+                                        <div flex="">Start Time</div>
+                                       
+                                         <div flex="">End Time</div>
+                                       
+                                        <div flex="15">Closed</div>
+                                    </div>    
+                                    <div layout="row">
+                                        <div flex="10" layout="row" layout-align="start center">Mon</div>
+                                        <div flex="75" layout="row" >
+											<div flex class="daytimemargin">
+												<md-select layout-fill ng-model="business.monStrtime" md-on-open="loadTime()" ng-disabled="business.moncb" > <md-option
+													ng-value="time" ng-repeat="time in times" >{{time.value}}</md-option>
+												</md-select>
+											</div>
+											<div  flex class="daytimemargin" >
+											 	<md-select layout-fill required ng-model="business.monStrTz" name="monStrTz"  class="location-sel" ng-disabled="!business.monStrtime" >
+	                                                <md-option value="AM">AM</md-option>
+	                                                <md-option value="PM">PM</md-option>
+						                        </md-select>
+						                        <!-- add validation for Monday -->
+												<div class="validation-messages" ng-show="business.monStrtime">
+													<div ng-messages="detailsForm.monStrTz.$error">
+														<div ng-message="required">Required</div>
+													</div>
+												</div>
+					                        </div>
+                                            <div flex layout="row" layout-align="center center">to</div>
+                                           <div flex  class="daytimemargin">
+                                           		<md-select layout-fill required ng-model="business.monEndtime" name="monEndtime" md-on-open="loadTime()"
+													ng-disabled="!business.monStrtime"> <md-option
+													ng-value="time" ng-repeat="time in times">{{time.value}}</md-option>
+												</md-select>
+												<div class="validation-messages" ng-show="business.monStrtime">
+													<div ng-messages="detailsForm.monEndtime.$error">
+														<div ng-message="required">Required</div>
+													</div>
+												</div>
+                                           </div>
+                                           <div flex class="daytimemargin" >
+	                                           	<md-select layout-fill required ng-model="business.monEndTz" name="monEndTz" class="location-sel" ng-disabled="!business.monStrtime" >
+	                                                <md-option value="AM">AM</md-option>
+	                                                <md-option value="PM">PM</md-option>
+						                        </md-select>
+						                        <div class="validation-messages" ng-show="business.monStrtime">
+													<div ng-messages="detailsForm.monEndTz.$error">
+														<div ng-message="required">Required</div>
+													</div>
+												</div>
+                                           </div>
+                                            
+                                        </div>
+                                        <div flex="15"><md-checkbox ng-model="business.moncb" aria-label="monCheckbox" name="monchecked"></md-checkbox></div>{{business.monchecked}}
+									</div>
+									<div layout="row">
+                                        <div flex="10" layout="row" layout-align="start center">Tue</div>
+                                        <div flex="75" layout="row">
+                                        	<md-select ng-model="business.tueStrtime" md-on-open="loadTime()"
+												style="min-width: 30px;" ng-disabled="business.tuecb">
+												 <md-option	ng-value="time" ng-repeat="time in times">{{time.value}}</md-option>
+											</md-select>
+                                            <md-select required ng-model="business.tueStrTz" flex="" name="tueStrTz" class="location-sel" ng-disabled="!business.tueStrtime" >
+                                                <md-option value="AM">AM</md-option>
+                                                <md-option value="PM">PM</md-option>
+					                        </md-select>
+                                            <div flex="" layout="row" layout-align="center center">to</div>
+                                           <md-select required ng-model="business.tueEndtime" name="tueEndtime" md-on-open="loadTime()"
+												style="min-width: 30px;" ng-disabled="!business.tueStrtime"> <md-option
+												ng-value="time" ng-repeat="time in times">{{time.value}}</md-option>
+											</md-select>
+                                            <md-select required ng-model="business.tueEndTz" flex="" name="tueEndTz"  class="location-sel" ng-disabled="!business.tueStrtime" >
+                                                <md-option value="AM">AM</md-option>
+                                                <md-option value="PM">PM</md-option>
+					                        </md-select>
+                                        </div>
+                                        <div flex="15"><md-checkbox ng-model="business.tuecb" aria-label="tueCheckbox"></md-checkbox></div>
+									</div>
+								
+								<!-- validation for tuesday -->
+									<div class="validation-messages" ng-show="business.tueStrtime">
+										<div ng-messages="detailsForm.tueStrTz.$error">
+											<div style="padding-left:170px;" ng-message="required">Required</div>
+										</div>
+									</div>
+									<div class="validation-messages" ng-show="business.tueStrtime">
+										<div ng-messages="detailsForm.tueEndtime.$error">
+											<div style="padding-left:450px;" ng-message="required">Required</div>
+										</div>
+									</div>
+									<div class="validation-messages" ng-show="business.tueStrtime">
+										<div ng-messages="detailsForm.tueEndTz.$error">
+											<div style="padding-left:550px;" ng-message="required">Required</div>
+										</div>
+									</div>
+								
+                                    <div layout="row">
+                                        <div flex="10" layout="row" layout-align="start center">Wed</div>
+                                        <div flex="75" layout="row">
+                                        	<md-select ng-model="business.wedStrtime" md-on-open="loadTime()"
+												style="min-width: 30px;" ng-disabled="business.wedcb"> <md-option
+												ng-value="time" ng-repeat="time in times">{{time.value}}</md-option>
+											</md-select>
+                                            <md-select required ng-model="business.wedStrTz" flex="" name="wedStrTz" class="location-sel" ng-disabled="!business.wedStrtime">
+                                                <md-option value="AM">AM</md-option>
+                                                <md-option value="PM">PM</md-option>
+					                        </md-select>
+                                            <div flex="" layout="row" layout-align="center center">to</div>
+                                   			 <md-select required ng-model="business.wedEndtime" md-on-open="loadTime()" name="wedEndtime"
+												style="min-width: 30px;" ng-disabled="!business.wedStrtime">  <md-option
+												ng-value="time" ng-repeat="time in times">{{time.value}}</md-option>
+											</md-select>
+                                            <md-select required ng-model="business.wedEndTz" flex="" name="wedEndTz" class="location-sel" ng-disabled="!business.wedStrtime">
+                                                <md-option value="AM">AM</md-option>
+                                                <md-option value="PM">PM</md-option>
+					                        </md-select>
+                                        </div>
+                                        <div flex="15"><md-checkbox ng-model="business.wedcb" aria-label="wedCheckbox"></md-checkbox></div>
+									</div>
+									
+									<!-- add validation for wed -->
+									<div class="validation-messages" ng-show="business.wedStrtime">
+										<div ng-messages="detailsForm.wedStrTz.$error">
+											<div style="padding-left:175px;" ng-message="required">Required</div>
+										</div>
+									</div>
+									<div class="validation-messages" ng-show="business.wedStrtime">
+										<div ng-messages="detailsForm.wedEndtime.$error">
+											<div style="padding-left:450px;" ng-message="required">Required</div>
+										</div>
+									</div>
+									<div class="validation-messages" ng-show="business.wedStrtime">
+										<div ng-messages="detailsForm.wedEndTz.$error">
+											<div style="padding-left:550px;" ng-message="required">Required</div>
+										</div>
+									</div>
+									
+									
+									
+									     
+									<div layout="row">
+                                        <div flex="10" layout="row" layout-align="start center">Thur</div>
+                                        <div flex="75" layout="row">
+                                        	<md-select ng-model="business.thuStrtime" md-on-open="loadTime()"
+												style="min-width: 30px;"ng-disabled="business.thucb"> <md-option
+												ng-value="time" ng-repeat="time in times">{{time.value}}</md-option>
+											</md-select>
+                                            <md-select required ng-model="business.thuStrTz" name="thuStrTz" flex="" class="location-sel" ng-disabled="!business.thuStrtime" >
+                                                <md-option value="AM">AM</md-option>
+                                                <md-option value="PM">PM</md-option>
+					                        </md-select>
+                                            <div flex="" layout="row" layout-align="center center">to</div>
+                                           <md-select required name="thuEndtime" ng-model="business.thuEndtime" md-on-open="loadTime()"
+												style="min-width: 30px;" ng-disabled="!business.thuStrtime"> <md-option
+												ng-value="time" ng-repeat="time in times">{{time.value}}</md-option>
+											</md-select>
+                                            <md-select required name="thuEndTz" ng-model="business.thuEndTz" flex="" class="location-sel" ng-disabled="!business.thuStrtime" >
+                                                <md-option value="AM">AM</md-option>
+                                                <md-option value="PM">PM</md-option>
+					                        </md-select>
+                                        </div>
+                                        <div flex="15"><md-checkbox ng-model="business.thucb" aria-label="thuCheckbox"></md-checkbox></div>
+									</div>  
+									
+									<!-- add validation for thu -->
+									<div class="validation-messages" ng-show="business.thuStrtime">
+										<div ng-messages="detailsForm.thuStrTz.$error">
+											<div style="padding-left:175px;" ng-message="required">Required</div>
+										</div>
+									</div>
+									<div class="validation-messages" ng-show="business.thuStrtime">
+										<div ng-messages="detailsForm.thuEndtime.$error">
+											<div style="padding-left:450px;" ng-message="required">Required</div>
+										</div>
+									</div>
+									<div class="validation-messages" ng-show="business.thuStrtime">
+										<div ng-messages="detailsForm.thuEndTz.$error">
+											<div style="padding-left:550px;" ng-message="required">Required</div>
+										</div>
+									</div>
+									
+									  
+									<div layout="row">
+                                        <div flex="10" layout="row" layout-align="start center">Fri</div>
+                                        <div flex="75" layout="row">
+                                        	<md-select ng-model="business.friStrtime" md-on-open="loadTime()"
+												style="min-width: 30px;" ng-disabled="business.fricb"> <md-option
+												ng-value="time" ng-repeat="time in times">{{time.value}}</md-option>
+											</md-select>
+                                            <md-select required ng-model="business.friStrTz" flex="" name="friStrTz" class="location-sel" ng-disabled="!business.friStrtime">
+                                                <md-option value="AM">AM</md-option>
+                                                <md-option value="PM">PM</md-option>
+					                        </md-select>
+                                            <div flex="" layout="row" layout-align="center center">to</div>
+                                           <md-select required ng-model="business.friEndtime" name="friEndtime" md-on-open="loadTime()"
+												style="min-width: 30px;" ng-disabled="!business.friStrtime" >  <md-option
+												ng-value="time" ng-repeat="time in times">{{time.value}}</md-option>
+											</md-select>
+                                            <md-select required ng-model="business.friEndTz" flex="" name="friEndTz" class="location-sel" ng-disabled="!business.friStrtime" ">
+                                                <md-option value="AM">AM</md-option>
+                                                <md-option value="PM">PM</md-option>
+					                        </md-select>
+                                        </div>
+                                        <div flex="15"><md-checkbox ng-model="business.fricb" aria-label="friCheckbox"></md-checkbox></div>
+									</div>
+									
+									<!-- add validation for friday -->
+									<div class="validation-messages" ng-show="business.friStrtime">
+										<div ng-messages="detailsForm.friStrTz.$error">
+											<div style="padding-left:175px;" ng-message="required">Required</div>
+										</div>
+									</div>
+									<div class="validation-messages" ng-show="business.friStrtime">
+										<div ng-messages="detailsForm.friEndtime.$error">
+											<div style="padding-left:450px;" ng-message="required">Required</div>
+										</div>
+									</div>
+									<div class="validation-messages" ng-show="business.friStrtime">
+										<div ng-messages="detailsForm.friEndTz.$error">
+											<div style="padding-left:550px;" ng-message="required">Required</div>
+										</div>
+									</div>
+																		    
+									<div layout="row">
+                                        <div flex="10" layout="row" layout-align="start center">Sat</div>
+                                        <div flex="75" layout="row">
+                                        	<md-select ng-model="business.satStrtime" md-on-open="loadTime()"
+												style="min-width: 30px;" ng-disabled="business.satcb"> <md-option
+												ng-value="time" ng-repeat="time in times">{{time.value}}</md-option>
+											</md-select>
+                                            <md-select required ng-model="business.satStrTz" name="satStrTz" flex="" class="location-sel" ng-disabled="!business.satStrtime" >
+                                                <md-option value="AM">AM</md-option>
+                                                <md-option value="PM">PM</md-option>
+					                        </md-select>
+                                            <div flex="" layout="row" layout-align="center center">to</div>
+                                            <md-select required ng-model="business.satEndtime" name="satEndtime" md-on-open="loadTime()"
+												style="min-width: 30px;" ng-disabled="!business.satStrtime" > <md-option
+												ng-value="time" ng-repeat="time in times">{{time.value}}</md-option>
+											</md-select>
+                                            <md-select required ng-model="business.satEndTz" flex="" name="satEndTz" class="location-sel" ng-disabled="!business.satStrtime">
+                                                <md-option value="AM">AM</md-option>
+                                                <md-option value="PM">PM</md-option>
+					                        </md-select>
+                                        </div>
+                                        <div flex="15"><md-checkbox ng-model="business.satcb" aria-label="satCheckbox"></md-checkbox></div>
+									</div>
+									
+									<!-- add validation for sat -->
+									<div class="validation-messages" ng-show="business.satStrtime">
+										<div ng-messages="detailsForm.satStrTz.$error">
+											<div style="padding-left:175px;" ng-message="required">Required</div>
+										</div>
+									</div>
+									<div class="validation-messages" ng-show="business.satStrtime">
+										<div ng-messages="detailsForm.satEndtime.$error">
+											<div style="padding-left:450px;" ng-message="required">Required</div>
+										</div>
+									</div>
+									<div class="validation-messages" ng-show="business.satStrtime">
+										<div ng-messages="detailsForm.satEndTz.$error">
+											<div style="padding-left:550px;" ng-message="required">Required</div>
+										</div>
+									</div>
+									
+									
+									
+									<div layout="row">
+                                        <div flex="10" layout="row" layout-align="start center">Sun</div>
+                                        <div flex="75" layout="row">
+                                        	<md-select ng-model="business.sunStrtime" md-on-open="loadTime()"
+												style="min-width: 30px;" ng-disabled="business.suncb"><md-option
+												ng-value="time" ng-repeat="time in times">{{time.value}}</md-option>
+											</md-select>
+                                            <md-select required ng-model="business.sunStrTz" name="sunStrTz" flex="" class="location-sel" ng-disabled="!business.sunStrtime">
+                                                <md-option value="AM">AM</md-option>
+                                                <md-option value="PM">PM</md-option>
+					                        </md-select>
+                                            <div flex="" layout="row" layout-align="center center">to</div>
+                                            <md-select required ng-model="business.sunEndtime" name="sunEndtime" md-on-open="loadTime()"
+												style="min-width: 30px;" ng-disabled="!business.sunStrtime"> 
+											 <md-option
+												ng-value="time" ng-repeat="time in times">{{time.value}}
+											</md-option>
+											</md-select>
+                                            <md-select required ng-model="business.sunEndTz" name="sunEndTz" flex="" class="location-sel" ng-disabled="!business.sunStrtime">
+                                                <md-option value="AM">AM</md-option>
+                                                <md-option value="PM">PM</md-option>
+					                        </md-select>
+                                        </div>
+                                        <div flex="15"><md-checkbox ng-model="business.suncb" aria-label="sunCheckbox"></md-checkbox></div>
+									</div>  
+									
+									<!-- add validation for sat -->
+									<div class="validation-messages" ng-show="business.sunStrtime">
+										<div ng-messages="detailsForm.sunStrTz.$error">
+											<div style="padding-left:175px;" ng-message="required">Required</div>
+										</div>
+									</div>
+									<div class="validation-messages" ng-show="business.sunStrtime">
+										<div ng-messages="detailsForm.sunEndtime.$error">
+											<div style="padding-left:450px;" ng-message="required">Required</div>
+										</div>
+									</div>
+									<div class="validation-messages" ng-show="business.sunStrtime">
+										<div ng-messages="detailsForm.sunEndTz.$error">
+											<div style="padding-left:550px;" ng-message="required">Required</div>
+										</div>
+									</div>
+									
+									
+									
+									                               
+                                </div>
+                            </div>
+							<div layout layout-sm="row" class="occupancies">
+ 								<div flex="20"><h5>Grace Period</h5></div>
+                                <div flex="25" layout="row">
+                                	                               	
+	                                	<md-select ng-model="business.gracePeriod" name="gracePeriod" flex="" class="location-sel">
+	                                                <md-option value="15" ng-selected="15">15</md-option>
+	                                                <md-option value="30">30</md-option>
+						                </md-select>Minutes
+                                	
+								</div>
+                            </div>
+                            <div layout layout-sm="row" class="occupancies">
+ 								<div flex="20"><h5>Expiry Time</h5></div>
+                                <div flex="25" layout="row">
+                                	
+	                                	<md-select ng-model="business.expiryPeriod" name="expiryPeriod" flex="" class="location-sel">
+	                                                <md-option value="15">15</md-option>
+	                                                <md-option value="30" ng-selected="30">30</md-option>
+						                </md-select>Minutes
+					                
+								</div>
+                            </div>
+                            
+                            <div class="reg-btns">
+                                <md-button class="md-raised md-primary blue-btn" ng-click='saveBusiness()'>Save</md-button>
+                                <a href="#addbusiness"><md-button class="md-raised md-primary black-btn">Back</md-button></a>
+                                <md-button class="md-raised md-primary hollow-btn">Reset</md-button>                  
+                            </div>
+                        </form>
+                    </div>
+				</div>
+		  </md-content>
+      </div>
+</div>
